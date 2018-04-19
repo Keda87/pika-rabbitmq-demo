@@ -1,10 +1,13 @@
 #!/usr/bin/env python
+import time
 
 import pika
 
 
 def callback(ch, method, properties, body):
-    print('  [X] Received %r' % body)
+    print(' [x] Received %r' % body)
+    time.sleep(body.count(b'.'))
+    print(' [x] Done')
 
 
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
